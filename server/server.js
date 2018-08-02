@@ -7,8 +7,12 @@ const schema = require('./schema/schema');
 
 const app = express();
 
+//fixes connection issue
+// npm remove mongoose
+// npm install mongoose@4.10.8 --save
+
 // Replace with your mongoLab URI
-const MONGO_URI = '';
+const MONGO_URI = 'mongodb://user1:password1@ds051943.mlab.com:51943/lyricaldb';
 if (!MONGO_URI) {
   throw new Error('You must provide a MongoLab URI');
 }
