@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
@@ -9,12 +9,25 @@ class SongCreate extends Component {
         
         this.state = { title : ''};
     }
-   
+    
+    submitHandler(e) {
+      e.preventDefault();
+      // how to pass variable to mutation in props
+      this.props.mutate({
+         variables: {
+             title: this.state.title
+         }
+      });
+      
+      console.log(this.props);
+      
+    };
+    
     render() {
         return (
             <div>
-                <h1>creat new song</h1>
-                <form>
+                <h1>Create new song</h1>
+                <form onSubmit={this.submitHandler.bind(this)}>
                     <label> title </label>
                     <input type="text"
                            onChange={e => this.setState({title : e.target.value})}
@@ -28,4 +41,13 @@ class SongCreate extends Component {
     }
 }
 
-export default SongCreate;
+const mutation = gql `
+ mutation AddSong($title : String){
+   addSong(title: $title) {
+      title
+   }
+ }
+`;
+
+
+export default graphql(mutation)(SongCreate);
