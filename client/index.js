@@ -17,8 +17,8 @@ const Root = () => {
     <ApolloProvider client={client}>
         <Router history={hashHistory}>
             <Route path="/" component={App}>
-               <IndexRoute component={SongList}></IndexRoute>
-               <Route path="song/new" component={SongCreate} />
+               <IndexRoute component={SongList} />
+               <Route path="songs/new" component={SongCreate} />
             </Route>
         </Router>
         
