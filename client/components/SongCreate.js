@@ -18,6 +18,7 @@ class SongCreate extends Component {
       // muatation return a promise by default
       this.props.mutate({
          variables: {title: this.state.title},
+         //refetchQueries: [{query: query, variable: }]  takes 2 params
          refetchQueries: [{query}]
       }).then(() => hashHistory.push('/'));
       
